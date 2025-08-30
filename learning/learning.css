@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    width: 150px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgb(216, 216, 255);
+    text-align: center;
+    border: 5px dashed blue;
+    padding: 0 20px ;
+    position: relative;
+    
+    
+    
+}
+a{
+    display: block;
+    text-decoration: none;
+    border: 5px solid blue;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgb(197, 201, 255);
+    margin: 20px;
+    width: 100px;
+    position: relative;
+    text-align: center;
+    
+}
+
+
+
+a:hover{
+    background-color: azure;
+    box-shadow: 0 5px 5px 0px rgb(63, 89, 255);
+}
+
+h2{
+    margin: 10px;
+}
+#myform{
+    margin: 10px;
+}
+
+input[type = "text"]{
+    margin-bottom: 5px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
+input[type = "submit"]{
+    background-color: rgb(243, 255, 255);
+    border: 5px solid blue;
+    padding:10px;
+    border-radius: 20px;
+    font-size: 12px;
+    position: relative;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
