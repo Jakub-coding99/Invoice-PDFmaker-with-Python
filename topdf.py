@@ -1,8 +1,12 @@
-import pdfkit
+from playwright.sync_api import sync_playwright
 import os
-
 desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
 
-index = "learning/learning.html"
-config = pdfkit.configuration(wkhtmltopdf = "wkhtmltopdf/bin/wkhtmltopdf.exe")
-pdfkit.from_file(index,f"{desktop}/fb.pdf",options={"enable-local-file-access": ""},configuration=config)
+
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.goto("file:///C:/Users/PC/Desktop/faktura model/index.html")
+    page.pdf(path="faktura.pdf", format="A4",print_background=True)
+    browser.close()
