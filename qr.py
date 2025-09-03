@@ -12,3 +12,6 @@ qr_format = f"SPD*1.0*ACC:{ACC_data}*AM:{AM_data}*CC:{CC_data}*DT:{DT_data}*MSG:
 
 qr = qrcode.make(qr_format) 
 qr.save("myqr_1.png")
+
+
+
