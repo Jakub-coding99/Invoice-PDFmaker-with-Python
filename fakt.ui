@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>953</width>
-    <height>711</height>
+    <height>751</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -370,7 +370,7 @@ border: 2px solid #BDEEFF
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -682,7 +682,7 @@ padding: 2px
       <x>90</x>
       <y>440</y>
       <width>691</width>
-      <height>101</height>
+      <height>161</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -691,6 +691,7 @@ padding: 2px
 QTableWidget {
 background-color: rgb(160, 160, 160);
 border: 2px solid #CCCCCC;
+border-radius: 6px
 
 }
 
@@ -719,6 +720,10 @@ QTableWidget QLineEdit {
 border:none;
 background:transparent
 
+}
+
+QTableCornerButton::section{
+background-color: SlateBlue;
 }
 </string>
     </property>
@@ -786,7 +791,7 @@ background:transparent
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>560</y>
+      <y>610</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -802,7 +807,7 @@ background:transparent
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>590</y>
+      <y>640</y>
       <width>101</width>
       <height>41</height>
      </rect>

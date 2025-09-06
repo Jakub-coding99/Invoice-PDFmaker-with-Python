@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(953, 711)
+        MainWindow.resize(953, 751)
         MainWindow.setMinimumSize(QtCore.QSize(0, 100))
         MainWindow.setStyleSheet("QMainWindow{\n"
 "\n"
@@ -235,10 +235,10 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_4.setObjectName("frame_4")
-        self.widget = QtWidgets.QWidget(parent=self.frame_4)
-        self.widget.setGeometry(QtCore.QRect(60, 10, 561, 71))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(parent=self.frame_4)
+        self.layoutWidget.setGeometry(QtCore.QRect(60, 10, 561, 71))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -246,30 +246,30 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_2 = QtWidgets.QLabel(parent=self.widget)
+        self.label_2 = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_2.addWidget(self.label_2)
-        self.bank_acc = QtWidgets.QLineEdit(parent=self.widget)
+        self.bank_acc = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.bank_acc.setObjectName("bank_acc")
         self.verticalLayout_2.addWidget(self.bank_acc)
         self.horizontalLayout.addLayout(self.verticalLayout_2)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label_3 = QtWidgets.QLabel(parent=self.widget)
+        self.label_3 = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
-        self.issue_date = QtWidgets.QLineEdit(parent=self.widget)
+        self.issue_date = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.issue_date.setObjectName("issue_date")
         self.verticalLayout.addWidget(self.issue_date)
         self.horizontalLayout.addLayout(self.verticalLayout)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label = QtWidgets.QLabel(parent=self.widget)
+        self.label = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label.setObjectName("label")
         self.verticalLayout_3.addWidget(self.label)
-        self.due_date = QtWidgets.QLineEdit(parent=self.widget)
+        self.due_date = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.due_date.setObjectName("due_date")
         self.verticalLayout_3.addWidget(self.due_date)
         self.horizontalLayout.addLayout(self.verticalLayout_3)
@@ -277,10 +277,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.label_4 = QtWidgets.QLabel(parent=self.widget)
+        self.label_4 = QtWidgets.QLabel(parent=self.layoutWidget)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_6.addWidget(self.label_4)
-        self.payment_method = QtWidgets.QLineEdit(parent=self.widget)
+        self.payment_method = QtWidgets.QLineEdit(parent=self.layoutWidget)
         self.payment_method.setPlaceholderText("")
         self.payment_method.setObjectName("payment_method")
         self.verticalLayout_6.addWidget(self.payment_method)
@@ -402,12 +402,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.addWidget(self.customer_DIC)
         self.verticalLayout_18.addLayout(self.horizontalLayout_12)
         self.calc_table = QtWidgets.QTableWidget(parent=self.centralwidget)
-        self.calc_table.setGeometry(QtCore.QRect(90, 440, 691, 101))
+        self.calc_table.setGeometry(QtCore.QRect(90, 440, 691, 161))
         self.calc_table.setStyleSheet("\n"
 "\n"
 "QTableWidget {\n"
 "background-color: rgb(160, 160, 160);\n"
 "border: 2px solid #CCCCCC;\n"
+"border-radius: 6px\n"
 "\n"
 "}\n"
 "\n"
@@ -437,6 +438,10 @@ class Ui_MainWindow(object):
 "background:transparent\n"
 "\n"
 "}\n"
+"\n"
+"QTableCornerButton::section{\n"
+"background-color: SlateBlue;\n"
+"}\n"
 "")
         self.calc_table.setShowGrid(False)
         self.calc_table.setGridStyle(QtCore.Qt.PenStyle.SolidLine)
@@ -463,11 +468,11 @@ class Ui_MainWindow(object):
         self.calc_table.verticalHeader().setVisible(True)
         self.calc_table.verticalHeader().setStretchLastSection(False)
         self.addLineButton = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.addLineButton.setGeometry(QtCore.QRect(90, 560, 101, 41))
+        self.addLineButton.setGeometry(QtCore.QRect(90, 610, 101, 41))
         self.addLineButton.setStyleSheet("")
         self.addLineButton.setObjectName("addLineButton")
         self.send_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.send_button.setGeometry(QtCore.QRect(400, 590, 101, 41))
+        self.send_button.setGeometry(QtCore.QRect(400, 640, 101, 41))
         self.send_button.setStyleSheet("")
         self.send_button.setObjectName("send_button")
         MainWindow.setCentralWidget(self.centralwidget)
