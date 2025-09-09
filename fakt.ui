@@ -691,7 +691,6 @@ padding: 2px
 QTableWidget {
 background-color: rgb(160, 160, 160);
 border: 2px solid #CCCCCC;
-border-radius: 6px
 
 }
 
@@ -751,11 +750,7 @@ background-color: SlateBlue;
     <attribute name="verticalHeaderStretchLastSection">
      <bool>false</bool>
     </attribute>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
+    <row/>
     <column>
      <property name="text">
       <string>Název</string>
@@ -770,20 +765,40 @@ background-color: SlateBlue;
      <property name="text">
       <string>Množství</string>
      </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
     </column>
     <column>
      <property name="text">
       <string>Jedn. cena</string>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
      </property>
     </column>
     <column>
      <property name="text">
       <string>Sleva</string>
      </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
     </column>
     <column>
      <property name="text">
       <string>Cena</string>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
      </property>
     </column>
    </widget>

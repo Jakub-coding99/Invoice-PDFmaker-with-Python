@@ -408,7 +408,6 @@ class Ui_MainWindow(object):
 "QTableWidget {\n"
 "background-color: rgb(160, 160, 160);\n"
 "border: 2px solid #CCCCCC;\n"
-"border-radius: 6px\n"
 "\n"
 "}\n"
 "\n"
@@ -449,18 +448,28 @@ class Ui_MainWindow(object):
         self.calc_table.setColumnCount(5)
         self.calc_table.setRowCount(1)
         item = QtWidgets.QTableWidgetItem()
-        self.calc_table.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         item.setFont(font)
         self.calc_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setBold(True)
+        item.setFont(font)
         self.calc_table.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setBold(True)
+        item.setFont(font)
         self.calc_table.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setBold(True)
+        item.setFont(font)
         self.calc_table.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setBold(True)
+        item.setFont(font)
         self.calc_table.setHorizontalHeaderItem(4, item)
         self.calc_table.horizontalHeader().setCascadingSectionResizes(False)
         self.calc_table.horizontalHeader().setSortIndicatorShown(False)

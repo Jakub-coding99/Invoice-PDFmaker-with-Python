@@ -16,17 +16,13 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.addLineButton.clicked.connect(self.add_row)
         self.user_config()
         for x in range(0,5):
-            
             if x == 0:
                 self.table.setColumnWidth(x,332)
             elif x == 3:
-                self.table.setColumnWidth(x,60)
-                 
+                self.table.setColumnWidth(x,60)    
             else:
                 self.table.setColumnWidth(x,90)
-        
     
-
     def add_row(self):
             row_count = self.table.rowCount()
             self.table.insertRow(row_count)
@@ -54,20 +50,15 @@ class MyApp(Ui_MainWindow,QMainWindow):
     
     def user_config(self):
         self.supplier_name.setText("Jakub Jurajda")
+        self.supplier_address.setText("Prostřední Bečva 482")
+        self.supplier_town.setText("Prostřední Bečva")
+        self.supplier_PN.setText("756 56")
+        self.supplier_ICO.setText("06929141")
     
     
     def get_data(self):
         
         data = {
-            "customer" : 
-                {"name" : self.customer_name.text(),
-                "address" : self.customer_address.text(),
-                "town" : self.customer_town.text(),
-                "psc" : self.customer_PN.text(),
-                "ico" : self.customer_ICO.text(),
-                "dic" : self.customer_DIC.text(),  
-                },
-
             "supplier" :
 
                  {
@@ -79,9 +70,17 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 "dic" : self.supplier_DIC.text(),
                 
                 },
+            
+            "customer" : 
+                {"name" : self.customer_name.text(),
+                "address" : self.customer_address.text(),
+                "town" : self.customer_town.text(),
+                "psc" : self.customer_PN.text(),
+                "ico" : self.customer_ICO.text(),
+                "dic" : self.customer_DIC.text(),  
+                },
 
-            "calculation" :
-                 {"calculation" : self.get_table_data()},
+            "calculation" : self.get_table_data(),
             
             
             "others" :
@@ -94,15 +93,11 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 "payment_method" : self.payment_method.text(),
                 }
             
-            
-           
-
-
-
 
         }
-        
         print(data)
+        
+        return data
 
     
     
@@ -113,36 +108,32 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 
+# from jinja2 import Environment, FileSystemLoader
 
+# env = Environment(loader = FileSystemLoader('templates'))
 
-#  for i in range(rows):
-#             d = {
-#                 f"row{i}" :
-#                 {
-#                    "material_name" : "",
-#                    "amount" : "",
-#                    "single_price" : "",
-#                    "discount" : "",
-#                    "price" : ""
+# template = env.get_template('index.html')
+# dic = {
+#     "name": "jakub",
+#     "age" : "26",
+#     "work" :
+#         [
+# {
+#        "position" :"chemik",
+#        "delka" : 7
+#     },
+#     {
+#        "position" :"chemik",
+#        "delka" : 7
+#     }
 
-#                 }
-#             }
-#             dic.append(d)
-       
-#             for x in range(len(dic)):
-#                 try:
-#                     for col in range(cols + 1):
-                        
-#                         if col == 0:
-#                             dic[x][f"row{x}"]["material_name"] = self.table.item(x,col).text()
-#                         elif col == 1:
-#                             dic[x][f"row{x}"]["amount"] = self.table.item(x,col).text()
-#                         elif col == 2:
-#                             dic[x][f"row{x}"]["single_price"] = self.table.item(x,col).text()
-#                         elif col == 3:
-#                             dic[x][f"row{x}"]["discount"] = self.table.item(x,col).text()
-#                         elif col == 4:
-#                             dic[x][f"row{x}"][ "price"] = self.table.item(x,col).text()
-#                 except AttributeError:
-#                     pass
-       
+#         ]
+   
+
+# }
+
+# with open("test.html","w") as file:
+    
+#     new_file = template.render(dic = dic)
+#     file.write(new_file)
+    
