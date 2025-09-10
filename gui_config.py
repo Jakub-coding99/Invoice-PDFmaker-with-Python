@@ -20,59 +20,72 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.addLineButton.clicked.connect(self.add_row)
         self.user_config()
         self.table_config()
+        self.config_table_cell()
+        self.full_price = ""
         
-        self.get_price()
-    
+        
     def table_config(self):
         for x in range(0,5):
             if x == 0:
-                self.table.setColumnWidth(x,363)
+                self.table.setColumnWidth(x,343)
             elif x == 3:
                 self.table.setColumnWidth(x,50)    
+            elif x == 4:
+                self.table.setColumnWidth(x,110)
+
+                
             else:
                 self.table.setColumnWidth(x,90)
         self.table.insertRow(1)
+        self.table.setSpan(1,0,1,self.table.columnCount() -1)
+        self.table.verticalHeader().setVisible(False)
         
         self.item_text = QTableWidgetItem("Cena Celkem")
         self.item_text.setFlags(self.item_text.flags() & ~Qt.ItemFlag.ItemIsEditable)
-        self.item_text.setFont(QFont("Arial", 12,QFont.Weight.Bold))
-        self.table.verticalHeader().setVisible(False)
+        self.item_text.setFont(QFont("Arial", 10,QFont.Weight.Bold))
         self.table.setItem(1,0,self.item_text)
-        self.table.setSpan(1,0,1,self.table.columnCount() -1)
 
+        
         self.item_sum = QTableWidgetItem("0 Kč")
-        self.item_sum.setFont(QFont("Arial", 12,QFont.Weight.Bold))
-        self.item_sum.setFlags(self.item_sum.flags() & ~Qt.ItemFlag.ItemIsEditable )
+        self.item_sum.setFont(QFont("Arial", 10,QFont.Weight.Bold))
         self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
-        
-        
-        
-    def get_price(self):
-        total = 0
+        self.table.viewport().update()
+
+  
+
+
+    def config_table_cell(self):
         rowcount = self.table.rowCount()
-        for i in range(rowcount):
+        for i in range(rowcount -1):
             
             if self.table.cellWidget(i,4) is not None:
                 continue
             line_edit = QLineEdit()
             self.table.setCellWidget(i,4,line_edit)
-            def get_text(row):
-                def get(text):
-                    print(text)
-                    
-                
-                return get
-            line_edit.textChanged.connect(get_text(i))
+            line_edit.textChanged.connect(self.get_price)
             
-           
-            
+          
+    def get_price(self):
+        total = 0
+        rowcount = self.table.rowCount()
+        for row in range(rowcount - 1):
+            if self.table.cellWidget(row,4) is not None:
+                try:
+                    x = self.table.cellWidget(row,4).text()
+                    total += float(x)
+                except ValueError:
+                    pass
+        self.item_sum.setText(f"{total:,.2f} Kč".replace(","," ").replace(".",","))
+        self.full_price = self.item_sum.text()
+       
             
        
     def add_row(self):
             row_count = self.table.rowCount()
             self.table.insertRow(row_count - 1)
             self.table.setRowHeight(row_count,10)
-            self.get_price()
+            self.config_table_cell()
+            
             
             
     
@@ -108,7 +121,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
         for data in all_data:
             if all(data[key] == "" for key in headers):
                 all_data.remove(data)
-            
+        
         return all_data
 
     
@@ -145,6 +158,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 },
 
             "calculation" : self.get_table_data(),
+            "full_price" : self.full_price,
             
             
             "others" :
@@ -159,6 +173,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
 
         }
+        print(data)
         render_data(data)
         # create_qr(amount=500, invoke_num= data["others"]["invoke_num"])
         time.sleep(1)
