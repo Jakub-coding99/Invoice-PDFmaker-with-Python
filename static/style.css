@@ -8,18 +8,26 @@
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    border: 0.8mm solid black;
+    /* border: 0.8mm solid black; */
     padding: 10mm;
     box-sizing: border-box;
 }
 
+.content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
 .container {
+    flex: 1;
     width: 190mm;
     background: white;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(7, auto);
+    grid-template-rows:  auto;
 }
 
 .faHead {
@@ -85,7 +93,7 @@ table {
     grid-column: span 2;
     grid-row: 5;
     border-collapse: collapse;
-    margin: 6.6mm 8mm;
+    margin: 6.6mm 5mm;
     font-size: 3.5mm;
     font-family: sans-serif;
     min-width: 100mm;
@@ -100,21 +108,28 @@ table thead tr th {
     padding: 2.6mm;
     text-align: left;
     padding-left: 13mm;
+    color: white;
 }
 
 table tr td {
     text-align: left;
-    padding-left: 13mm;
+    padding-left: 12mm;
 }
 
 table th,
 td {
-    padding: 3.1mm 4mm;
+    padding: 2mm 2mm;
 }
 
 table tbody tr {
     border-bottom: 0.5mm solid black;
 }
+
+table tbody td {
+    padding-top: 1mm;
+    padding-bottom: 1mm;
+}
+
 
 .totalAmount {
     grid-column: 2;
@@ -125,35 +140,13 @@ table tbody tr {
 
 .totalAmount h3 {
     padding: 2.6mm;
-    margin-top: 18mm;
+    margin-top:0;
     text-align: right;
     margin-right: 8mm;
     border-bottom: 0.5mm solid blue;
 }
 
-/* .razitko {
-    width: 53mm;
-    grid-column: 2;
-    grid-row: 7;
-    margin-left: auto;
-    margin-right: 18mm;
-    margin-top: 5mm;
-}
 
-.toFlex {
-    display: flex;
-    justify-content: space-between;
-}
-
-.qrCode {
-    width: 30mm;
-    padding-right: 2.6mm;
-} */
-
-.flexRazQr {
-    display: flex;
-    justify-content: space-between;
-}
 
 .razitko {
     width: 53mm;
@@ -163,9 +156,6 @@ table tbody tr {
     margin-right: 18mm;
     margin-top: 5mm;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 }
 
 .razitko img {
@@ -175,14 +165,79 @@ table tbody tr {
 }
 
 .qrWrapper {
-    display: flex;
+    grid-column: 1;
+    grid-row: 7;
     width: 35mm;
     height: 35mm;
     margin-top: 5mm;
+    margin-left: 20mm;
+    border: 2px dashed black;
+    ;
+
 }
 
 .qrWrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    
+
+} 
+
+.qrLabel {
+    margin-left: 8mm;
+    margin-top: 3mm;
+}
+
+footer{
+    
+    grid-column: span 2;
+    margin: auto 0 10mm 0
+    
+}
+
+footer .dph {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3mm;
+    font-weight: bold;
+}
+
+footer .sign-flex {
+    display:flex;
+    justify-content: space-around;
+    
+    
+    
+}
+
+
+footer .line2 {
+    
+    border-bottom: 2px solid rgb(0, 0, 0);
+    
+}
+footer .customer-sign {
+    
+    margin : 8mm 0 0 0 ;
+    
+    
+    
+    
+}
+
+footer .sign-date {
+    
+    margin: 8mm 0 0 0;
+    
+}
+
+footer .sign-line {
+    border-bottom: 1px solid black;
+    width: 30mm;
+    margin: 0 0 0 3mm;
+    display: inline-block;
+    height: 4mm;
+    vertical-align: bottom;
+    
+    
 }

@@ -63,6 +63,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 
                 return get
             line_edit.textChanged.connect(get_text(i))
+            
            
             
             
@@ -101,8 +102,13 @@ class MyApp(Ui_MainWindow,QMainWindow):
 
                     else:
                         row_data[headers[col]] = ""
+                
             all_data.append(row_data)
         
+        for data in all_data:
+            if all(data[key] == "" for key in headers):
+                all_data.remove(data)
+            
         return all_data
 
     
@@ -156,11 +162,14 @@ class MyApp(Ui_MainWindow,QMainWindow):
         render_data(data)
         # create_qr(amount=500, invoke_num= data["others"]["invoke_num"])
         time.sleep(1)
-        create_pdf()
+        create_pdf(data["customer"]["name"])
         
         return data
 
-    
+    def price(self):
+        row_count = self.table.rowCount()
+        for row in range(row_count -1):
+            print(self.table.cellWidget(row,4))
 
 
 if __name__ == "__main__":

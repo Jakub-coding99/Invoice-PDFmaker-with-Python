@@ -8,6 +8,8 @@
 </head>
 <body>
     <div class="a4-container">
+        <div class="content-container">
+
 
    
     <div class="container">
@@ -37,10 +39,11 @@
                         <p style="font-weight: bold;">ODBĚRATEL</p><br>
                         
 
-                        <p>Bohumil Večeřa</p>
-                        <p>Březinova 5/1039</p>
-                        <p>700 30 Ostrava</p><br>
-                        <p>IČO 888888</p>
+                        <p>{{data.customer.name}}</p>
+                        <p>{{data.customer.address}}</p>
+                        <p>{{data.customer.psc}} {{data.customer.town}}</p><br>
+                        <p>IČO {{data.customer.ico}}</p>
+                        <p>DIČ {{data.customer.dic}}</p>
 
 
                 </div>
@@ -100,28 +103,37 @@
         </div>
                 
 
-<div class="razitko">
-  <div class="raz-flex">
-    <div class="raz-stamp">
-      <img src="../static/img/kubarazitko.png" alt="Razítko">
-    </div>
-    <div class="qrWrapper">
-      <img src="../static/img/myqr_1.png"alt="QR kód">
-      <p class="qrLabel">QR platba</p>
-    </div>
-  </div>
-</div>
-            
-           
+        <div class="razitko">
         
+            <img src="../static/img/kubarazitko.png" alt="Razítko">
+            </div>
+            
+            <div class="qrWrapper">
+            <img src="../static/img/myqr_1.png"alt="QR kód">
+            <p class="qrLabel">QR platba</p>
+            </div>
         
    
+        
+        </div>
+     <footer>
+        <div class="dph">Nejsem plátce DPH.</div>
+        <div class = "line2"></div>
+            
+        <div class = "sign-flex">
+        <div class = "customer-sign">Převzal: <span class="sign-line"></span></div>
+            
+            
+        <div class="sign-date">Datum: <span class="sign-line"></span></div>
 
-    
-    
-    
+        </div>
+            
+            
+    </footer>
+            
     </div>
-     </div>
+</div>
+     
     
     
     

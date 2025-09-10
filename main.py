@@ -16,19 +16,13 @@ def render_data(data):
         file.write(new_file)
         
 
-
-
-
-
-
-
-def create_pdf():
+def create_pdf(name):
     desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') 
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
         page.goto("file:///C:/Users/PC/Desktop/faktura model/templates/new_model.html")
-        page.pdf(path=f"{desktop}/faktura.pdf", format="A4",print_background=True)
+        page.pdf(path=f"{desktop}/faktura-{name}.pdf", format="A4",print_background=True)
         browser.close()
 
 
