@@ -408,6 +408,7 @@ class Ui_MainWindow(object):
 "QTableWidget {\n"
 "background-color: rgb(160, 160, 160);\n"
 "border: 2px solid #CCCCCC;\n"
+"border-radius: 6px;\n"
 "\n"
 "}\n"
 "\n"

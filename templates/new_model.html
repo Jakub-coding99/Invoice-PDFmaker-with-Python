@@ -12,17 +12,17 @@
    
     <div class="container">
             <div class="faHead">
-                <h1>Faktura {{data.others.invoke_num}}</h1>
+                <h1>Faktura </h1>
                 <p>Daňový doklad</p>
             </div>
            
                 <div class="dodavatel">
                         <p style="font-weight: bold;">DODAVATEL</p><br>
-                        <p>{{data.supplier.name}}</p>
-                        <p>{{data.supplier.address}}</p>
-                        <p>{{data.supplier.psc}} {{data.supplier.town}}</p><br>
-                        <p>IČO {{data.supplier.ico}}</p>
-                        <p>DIČ {{data.supplier.dic}}</p>
+                        <p>Jakub Jurajda</p>
+                        <p>Prostřední Bečva 482</p>
+                        <p>756 56 Prostřední Bečva</p><br>
+                        <p>IČO 06929141</p>
+                        <p>DIČ </p>
                         
                         
 
@@ -52,8 +52,8 @@
 
                    
                         <div class="dodText">
-                            <p>Bankovní účet <span>{{data.others.bank_acc}}</span></p>
-                            <p>Způsob platby <span>{{data.others.payment_method}}</span></p><br>
+                            <p>Bankovní účet <span></span></p>
+                            <p>Způsob platby <span>Převodem</span></p><br>
                         </div>
                       
                      </div>
@@ -62,8 +62,8 @@
                 
                 <div class="line"></div>
                 <div class="odbDat">
-                    <p>Datum vystavení <span>{{data.others.issue_date}}</span></p>
-                    <p>Datum splatnosti <span>{{data.others.due_date}}</span></p>
+                    <p>Datum vystavení <span></span></p>
+                    <p>Datum splatnosti <span></span></p>
 
 
                 </div>
@@ -82,15 +82,15 @@
 
                     </thead>
                     <tbody>
-                    {% for x in data.calculation %}
+                    
                          <tr>
-                            <td>{{x.material_name}}</td>
-                            <td>{{x.amount}}</td>
-                            <td>{{x.single_price}}</td>
-                            <td>{{x.discount}}</td>
-                            <td>{{x.price}}</td>
+                            <td>555</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                    {% endfor %}
+                    
                     
                     </tbody>
                 </table>
