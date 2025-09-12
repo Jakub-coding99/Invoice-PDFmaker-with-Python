@@ -431,7 +431,7 @@ class Ui_MainWindow(object):
 "\n"
 "QTableWidget::item:focus {\n"
 "    \n"
-"    background:transparent\n"
+"    background:grey\n"
 "    }\n"
 "QTableWidget QLineEdit {\n"
 "border:none;\n"

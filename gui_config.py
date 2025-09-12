@@ -173,9 +173,9 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
 
         }
-        print(data)
+        
         render_data(data)
-        # create_qr(amount=500, invoke_num= data["others"]["invoke_num"])
+        create_qr(amount=data["full_price"], invoke_num= data["others"]["invoke_num"], acc=data["others"]["bank_acc"])
         time.sleep(1)
         create_pdf(data["customer"]["name"])
         
