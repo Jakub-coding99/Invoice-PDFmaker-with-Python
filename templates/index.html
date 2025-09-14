@@ -73,22 +73,22 @@
 
 
                 
-                <table>
+                <table style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Označení dodávky</th>
+                            <th style="width: 50%;">Označení dodávky</th>
                             <th>Množství</th>
-                            <th>Jedn. cena</th>
-                            <th>Sleva %</th>
-                            <th>Cena</th>
+                            <th >Jedn. cena</th>
+                            <th >Sleva</th>
+                            <th >Cena</th>
                         </tr>
 
                     </thead>
                     <tbody>
                     {% for x in data.calculation %}
                          <tr>
-                            <td>{{x.material_name}}</td>
-                            <td>{{x.amount}}</td>
+                            <td class="materialName" >{{x.material_name}}</td>
+                            <td >{{x.amount}}</td>
                             <td>{{x.single_price}}</td>
                             <td>{{x.discount}}</td>
                             <td>{{x.price}}</td>

@@ -8,7 +8,7 @@
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    /* border: 0.8mm solid black; */
+    border: 2px solid black;
     padding: 10mm;
     box-sizing: border-box;
 }
@@ -28,6 +28,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows:  auto;
+    
 }
 
 .faHead {
@@ -93,41 +94,67 @@ table {
     grid-column: span 2;
     grid-row: 5;
     border-collapse: collapse;
-    margin: 6.6mm 5mm;
+    margin: 1mm auto 5mm auto;
     font-size: 3.5mm;
     font-family: sans-serif;
     min-width: 100mm;
-    box-shadow: 0 0 5mm rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 0 5mm rgba(0, 0, 0, 0.15); */
+    table-layout: fixed;
 }
 
 table thead {
     background-color: blue;
 }
 
+
+
 table thead tr th {
-    padding: 2.6mm;
+    padding: 2mm;
+    
     text-align: left;
-    padding-left: 13mm;
+    
     color: white;
 }
 
 table tr td {
     text-align: left;
-    padding-left: 12mm;
+    padding-left: 2mm;
 }
 
 table th,
 td {
-    padding: 2mm 2mm;
+    border:1px solid black;
+    border-collapse: collapse;
+    padding: 1.1mm; 
+    line-height: 6mm; 
+      
 }
 
 table tbody tr {
     border-bottom: 0.5mm solid black;
+    
 }
 
 table tbody td {
     padding-top: 1mm;
     padding-bottom: 1mm;
+    border-bottom: 1px solid black;
+    
+    
+}
+
+
+.materialName {
+    margin: 0 auto;
+    padding-right: 1mm;
+    padding-left: 1mm;
+   
+}
+
+.materialName p {
+    font-size: 3.5mm;
+   
+
 }
 
 
@@ -241,3 +268,4 @@ footer .sign-line {
     
     
 }
+

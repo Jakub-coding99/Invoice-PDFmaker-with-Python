@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication,QMainWindow,QTableWidgetItem,QLineEdit
+from PyQt6.QtWidgets import QApplication,QMainWindow,QTableWidgetItem,QLineEdit,QTextEdit,QMessageBox, QPushButton
 from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
 
@@ -15,7 +15,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.setupUi(self)
         self.send_button.clicked.connect(self.get_data)
         self.table = self.calc_table
-        self.table.setRowHeight(0,10)
+        self.table.setRowHeight(0,35)
         self.table.setFixedWidth(688)
         self.addLineButton.clicked.connect(self.add_row)
         self.user_config()
@@ -51,21 +51,47 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
         self.table.viewport().update()
 
+        
   
 
 
     def config_table_cell(self):
+       
+
+        
         rowcount = self.table.rowCount()
         for i in range(rowcount -1):
             
             if self.table.cellWidget(i,4) is not None:
                 continue
+
+            if self.table.cellWidget(i,0) is not None:
+                continue
+
+
             line_edit = QLineEdit()
-            self.table.setCellWidget(i,4,line_edit)
+            text_edit = QTextEdit()
+           
+            
             line_edit.textChanged.connect(self.get_price)
+            text_edit.textChanged.connect(lambda row=i, te=text_edit: self.adjust_row_height(row, te))
+
+
+            
+            self.table.setCellWidget(i,4,line_edit)
+            self.table.setCellWidget(i,0,text_edit)
+           
+    def adjust_row_height(self, row, text_edit):
+        doc_height = text_edit.document().size().height()
+        margin = 10  
+        new_height = int(doc_height) + margin
+        max_height = 70
+        new_height = min(new_height,max_height)
+        self.table.setRowHeight(row, new_height)
             
           
     def get_price(self):
+        
         total = 0
         rowcount = self.table.rowCount()
         for row in range(rowcount - 1):
@@ -75,6 +101,8 @@ class MyApp(Ui_MainWindow,QMainWindow):
                     total += float(x)
                 except ValueError:
                     pass
+        
+        
         self.item_sum.setText(f"{total:,.2f} Kč".replace(","," ").replace(".",","))
         self.full_price = self.item_sum.text()
        
@@ -102,10 +130,23 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 
                 if col == 4:
                     widget = self.table.cellWidget(row,col)
+                
+              
+                    
                     if widget:
                         row_data[headers[col]] = widget.text()
+                        print(widget.text())
                     else:
                         row_data[headers[col]] = ""
+
+                elif col == 0:
+                    text_input = self.table.cellWidget(row,col)
+                    if text_input:
+                        row_data[headers[col]] = text_input.toPlainText()
+                    
+                    else:
+                        row_data[headers[col]] = ""
+                    
                 else:
                     data = self.table.item(row,col)
                     if data:
@@ -118,10 +159,15 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 
             all_data.append(row_data)
         
-        for data in all_data:
+        
+        for data in all_data[:]:
             if all(data[key] == "" for key in headers):
                 all_data.remove(data)
-        
+            
+            
+            if data["material_name"]:
+                data["material_name"] = "<p>" + data["material_name"].replace("\n\n","</p><br><p>").replace("\n", "</p><p>")  + "</p>"
+       
         return all_data
 
     
@@ -175,9 +221,29 @@ class MyApp(Ui_MainWindow,QMainWindow):
         }
         
         render_data(data)
-        create_qr(amount=data["full_price"], invoke_num= data["others"]["invoke_num"], acc=data["others"]["bank_acc"])
-        time.sleep(1)
-        create_pdf(data["customer"]["name"])
+        # try:
+        #     create_qr(amount=data["full_price"], invoke_num= data["others"]["invoke_num"], acc=data["others"]["bank_acc"])
+        # except ValueError as e:
+        #     if str(e) == "Wrong bank account data.":
+            
+        #         msg_box = QMessageBox()
+        #         msg_box.setWindowTitle("Error")
+        #         msg_box.setText("Špatný formát účtu!\n"
+        #         "(předčíslí - číslo účtu / kód banky)\n" \
+        #         "(číslo účtu / kód banky)")
+        #         msg_box.exec()
+       
+       
+        #     elif str(e) =="Wrong price format":
+        #         msg_box_price = QMessageBox()
+        #         msg_box_price.setWindowTitle("Error")
+        #         msg_box_price.setText("Nesprávně zadaná celková cena!")
+        #         msg_box_price.exec()
+        
+
+
+        # else:
+        create_pdf(data["others"]["invoke_num"])
         
         return data
 
