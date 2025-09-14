@@ -87,12 +87,12 @@
                     <tbody>
                     {% for x in data.calculation %}
                          <tr>
-                            <td class="materialName" >{{x.material_name}}</td>
-                            <td >{{x.amount}}</td>
-                            <td>{{x.single_price}}</td>
-                            <td>{{x.discount}}</td>
-                            <td>{{x.price}}</td>
-                        </tr>
+                            <td  >{{x.material_name}}</td>
+                            <td class="centerAlign" >{{x.amount}}</td>
+                            <td class="centerAlign">{{x.single_price}}</td>
+                            <td class="centerAlign">{{x.discount}}</td>
+                            <td class="centerAlign">{{x.price}}</td>
+                        </tr>  
                     {% endfor %}
                     
                     </tbody>
@@ -102,7 +102,7 @@
             <h3>Celkem k úhradě {{data.full_price}}</h3>
         </div>
                 
-
+    
         <div class="razitko">
         
             <img src="../static/img/kubarazitko.png" alt="Razítko">
@@ -116,7 +116,7 @@
    
         
         </div>
-     <footer>
+     <footer class ="toBreak">
         <div class="dph">Nejsem plátce DPH.</div>
         <div class = "line2"></div>
             

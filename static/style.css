@@ -101,68 +101,53 @@ table {
     /* box-shadow: 0 0 5mm rgba(0, 0, 0, 0.15); */
     table-layout: fixed;
 }
+    
 
 table thead {
     background-color: blue;
 }
 
 
-
 table thead tr th {
-    padding: 2mm;
+    padding: 3mm;
     
     text-align: left;
     
     color: white;
+     border:0.5mm solid black;
+    
 }
 
-table tr td {
-    text-align: left;
-    padding-left: 2mm;
-}
 
-table th,
-td {
-    border:1px solid black;
+table td {
+    margin: 0;
+    padding: 0.5mm 1mm; 
+    line-height: 6mm;
+    border:0.5mm solid black;
     border-collapse: collapse;
-    padding: 1.1mm; 
-    line-height: 6mm; 
-      
-}
-
-table tbody tr {
-    border-bottom: 0.5mm solid black;
-    
-}
-
-table tbody td {
-    padding-top: 1mm;
-    padding-bottom: 1mm;
-    border-bottom: 1px solid black;
-    
-    
-}
-
-
-.materialName {
-    margin: 0 auto;
-    padding-right: 1mm;
-    padding-left: 1mm;
    
 }
 
-.materialName p {
+table tr {
+    min-height: 6.5mm; /* nebo kolik potřebuješ */
+}
+
+table td p {
+    margin: 0;
     font-size: 3.5mm;
-   
-
+    line-height: 6mm;
 }
 
+.centerAlign {
+    text-align: center;
+}
 
 .totalAmount {
     grid-column: 2;
     grid-row: 6;
     justify-self: right;
     margin-right: 13mm;
+    
 }
 
 .totalAmount h3 {
@@ -218,9 +203,14 @@ table tbody td {
 footer{
     
     grid-column: span 2;
-    margin: auto 0 10mm 0
+    margin: auto 0 10mm 0;
+    
     
 }
+
+/* .toBreak {
+    break-inside: avoid;
+} */
 
 footer .dph {
     display: flex;

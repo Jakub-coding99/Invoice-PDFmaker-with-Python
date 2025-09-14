@@ -46,9 +46,10 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.table.setItem(1,0,self.item_text)
 
         
-        self.item_sum = QTableWidgetItem("0 Kč")
-        self.item_sum.setFont(QFont("Arial", 10,QFont.Weight.Bold))
-        self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
+        self.item_sum_edit = QLineEdit("Kč")
+        self.item_sum = self.table.setCellWidget(1,self.table.columnCount() - 1 ,self.item_sum_edit)
+        self.item_sum_edit.setFont(QFont("Arial", 10,QFont.Weight.Bold))
+        # self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
         self.table.viewport().update()
 
         
@@ -56,30 +57,36 @@ class MyApp(Ui_MainWindow,QMainWindow):
 
 
     def config_table_cell(self):
-       
+        
 
         
         rowcount = self.table.rowCount()
+        t = self.table.cellWidget(rowcount -1, self.table.columnCount() -1)
+        if t:
+            print(t.text())
+        
+        # print(self.item_sum.text())
         for i in range(rowcount -1):
             
-            if self.table.cellWidget(i,4) is not None:
+            widget_check = any(self.table.cellWidget(i,x) != None for x in range(self.table.columnCount()))
+            if widget_check:
                 continue
 
-            if self.table.cellWidget(i,0) is not None:
-                continue
+            line_edits = [QLineEdit() for _ in range(4)]
+            
+                    
+            self.table.setCellWidget(i,1,line_edits[0])
+            self.table.setCellWidget(i,2,line_edits[1])
+            self.table.setCellWidget(i,3,line_edits[2])
+            self.table.setCellWidget(i,4,line_edits[3])
 
-
-            line_edit = QLineEdit()
+                  
+            # line_edits[3].textChanged.connect(self.get_price)
+            
             text_edit = QTextEdit()
-           
-            
-            line_edit.textChanged.connect(self.get_price)
-            text_edit.textChanged.connect(lambda row=i, te=text_edit: self.adjust_row_height(row, te))
-
-
-            
-            self.table.setCellWidget(i,4,line_edit)
             self.table.setCellWidget(i,0,text_edit)
+            text_edit.textChanged.connect(lambda row=i, te=text_edit: self.adjust_row_height(row, te))  
+            
            
     def adjust_row_height(self, row, text_edit):
         doc_height = text_edit.document().size().height()
@@ -135,7 +142,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
                     
                     if widget:
                         row_data[headers[col]] = widget.text()
-                        print(widget.text())
+                        
                     else:
                         row_data[headers[col]] = ""
 
@@ -148,7 +155,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
                         row_data[headers[col]] = ""
                     
                 else:
-                    data = self.table.item(row,col)
+                    data = self.table.cellWidget(row,col)
                     if data:
                         row_data[headers[col]] = data.text()
                 
@@ -167,7 +174,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
             if data["material_name"]:
                 data["material_name"] = "<p>" + data["material_name"].replace("\n\n","</p><br><p>").replace("\n", "</p><p>")  + "</p>"
-       
+        print(all_data)
         return all_data
 
     
