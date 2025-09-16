@@ -6,7 +6,8 @@ from PyQt6.QtCore import Qt
 from output import Ui_MainWindow
 from main import create_pdf, create_qr, render_data
 import time
-#pyside6-designer   
+#pyside6-designer  
+# pořešit kč u cen 
 
 class MyApp(Ui_MainWindow,QMainWindow):
     def __init__(self):
@@ -21,8 +22,8 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.user_config()
         self.table_config()
         self.config_table_cell()
-        self.full_price = ""
-        
+        self.full_price = None
+        self.full_price_byuser = None
         
     def table_config(self):
         for x in range(0,5):
@@ -46,22 +47,33 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.table.setItem(1,0,self.item_text)
 
         
-        self.item_sum = QTableWidgetItem("0 Kč")
-        self.item_sum.setFont(QFont("Arial", 10,QFont.Weight.Bold))
-        self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
+        self.sum_edit = QLineEdit("Kč")
+        self.sum_edit.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.sum_edit.setFont(QFont("Arial", 10,QFont.Weight.Bold))
+        
+        
+        self.my_price = self.table.setCellWidget(1,self.table.columnCount()-1, self.sum_edit)
         self.table.viewport().update()
 
         
+    def check_if_price(self):
   
+        
+        if self.full_price == None:
+            self.full_price_byuser = self.sum_edit.text()
+            
 
+            return self.full_price_byuser
+            
+        else:
+            return self.full_price
+        
+    def price_config(self):
+        self.full_price = None
 
     def config_table_cell(self):
-        
-       
 
-        
         rowcount = self.table.rowCount()
-        # print(self.item_sum.text())
         for i in range(rowcount -1):
             
             widget_check = any(self.table.cellWidget(i,x) != None for x in range(self.table.columnCount()))
@@ -76,8 +88,11 @@ class MyApp(Ui_MainWindow,QMainWindow):
             self.table.setCellWidget(i,3,line_edits[2])
             self.table.setCellWidget(i,4,line_edits[3])
 
-                  
+            
+            
+            
             line_edits[3].textChanged.connect(self.get_price)
+            self.sum_edit.textChanged.connect(self.price_config)
             
             text_edit = QTextEdit()
             self.table.setCellWidget(i,0,text_edit)
@@ -94,7 +109,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
           
     def get_price(self):
-        # když budou price prazdne, a když je v cena celkem částka,pak ji vypiš, jinak funguje součet prices
+       
         total = 0
         rowcount = self.table.rowCount()
         for row in range(rowcount - 1):
@@ -106,10 +121,8 @@ class MyApp(Ui_MainWindow,QMainWindow):
                     pass
         
         
-        self.item_sum.setText(f"{total:,.2f} Kč".replace(","," ").replace(".",","))
-        self.full_price = self.item_sum.text()
-       
-            
+        self.sum_edit.setText(f"{total:,.2f} Kč".replace(","," ").replace(".",","))
+        self.full_price = self.sum_edit.text()
        
     def add_row(self):
             row_count = self.table.rowCount()
@@ -118,9 +131,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             self.config_table_cell()
             
             
-            
-    
-
+        
     
     def get_table_data(self):
         all_data = []
@@ -170,7 +181,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
             if data["material_name"]:
                 data["material_name"] = "<p>" + data["material_name"].replace("\n\n","</p><br><p>").replace("\n", "</p><p>")  + "</p>"
-        print(all_data)
+        # print(all_data)
         return all_data
 
     
@@ -207,7 +218,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
                 },
 
             "calculation" : self.get_table_data(),
-            "full_price" : self.full_price,
+            "full_price" : self.check_if_price(),
             
             
             "others" :
@@ -222,6 +233,8 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
 
         }
+        
+        print(data["full_price"])
         
         render_data(data)
         # try:
@@ -250,10 +263,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
         
         return data
 
-    def price(self):
-        row_count = self.table.rowCount()
-        for row in range(row_count -1):
-            print(self.table.cellWidget(row,4))
+   
 
 
 if __name__ == "__main__":
