@@ -46,10 +46,9 @@ class MyApp(Ui_MainWindow,QMainWindow):
         self.table.setItem(1,0,self.item_text)
 
         
-        self.item_sum_edit = QLineEdit("Kč")
-        self.item_sum = self.table.setCellWidget(1,self.table.columnCount() - 1 ,self.item_sum_edit)
-        self.item_sum_edit.setFont(QFont("Arial", 10,QFont.Weight.Bold))
-        # self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
+        self.item_sum = QTableWidgetItem("0 Kč")
+        self.item_sum.setFont(QFont("Arial", 10,QFont.Weight.Bold))
+        self.table.setItem(1,self.table.columnCount()-1, self.item_sum)
         self.table.viewport().update()
 
         
@@ -58,13 +57,10 @@ class MyApp(Ui_MainWindow,QMainWindow):
 
     def config_table_cell(self):
         
+       
 
         
         rowcount = self.table.rowCount()
-        t = self.table.cellWidget(rowcount -1, self.table.columnCount() -1)
-        if t:
-            print(t.text())
-        
         # print(self.item_sum.text())
         for i in range(rowcount -1):
             
@@ -81,7 +77,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             self.table.setCellWidget(i,4,line_edits[3])
 
                   
-            # line_edits[3].textChanged.connect(self.get_price)
+            line_edits[3].textChanged.connect(self.get_price)
             
             text_edit = QTextEdit()
             self.table.setCellWidget(i,0,text_edit)
@@ -98,7 +94,7 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
           
     def get_price(self):
-        
+        # když budou price prazdne, a když je v cena celkem částka,pak ji vypiš, jinak funguje součet prices
         total = 0
         rowcount = self.table.rowCount()
         for row in range(rowcount - 1):
