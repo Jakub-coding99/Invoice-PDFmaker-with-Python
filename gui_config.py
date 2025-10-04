@@ -7,7 +7,7 @@ from output import Ui_MainWindow
 from main import create_pdf, create_qr, render_data
 import time
 #pyside6-designer  
-# pořešit kč u cen 
+
 
 class MyApp(Ui_MainWindow,QMainWindow):
     def __init__(self):
@@ -184,7 +184,8 @@ class MyApp(Ui_MainWindow,QMainWindow):
         # print(all_data)
         return all_data
 
-    
+    #DEFINE SUPPLIER
+
     def user_config(self):
         self.supplier_name.setText("Jakub Jurajda")
         self.supplier_address.setText("Prostřední Bečva 482")
@@ -234,32 +235,41 @@ class MyApp(Ui_MainWindow,QMainWindow):
 
         }
         
-        print(data["full_price"])
+
         
         render_data(data)
-        # try:
-        #     create_qr(amount=data["full_price"], invoke_num= data["others"]["invoke_num"], acc=data["others"]["bank_acc"])
-        # except ValueError as e:
-        #     if str(e) == "Wrong bank account data.":
+        try:
+            create_qr(amount=data["full_price"], invoke_num= data["others"]["invoke_num"], acc=data["others"]["bank_acc"])
+        except ValueError as e:
+            if str(e) == "Wrong bank account data.":
             
-        #         msg_box = QMessageBox()
-        #         msg_box.setWindowTitle("Error")
-        #         msg_box.setText("Špatný formát účtu!\n"
-        #         "(předčíslí - číslo účtu / kód banky)\n" \
-        #         "(číslo účtu / kód banky)")
-        #         msg_box.exec()
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Error")
+                msg_box.setText("Špatný formát účtu!\n"
+                                "\n"
+                "(předčíslí - číslo účtu / kód banky)\n" 
+                "nebo\n"
+                "(číslo účtu / kód banky)")
+                msg_box.exec()
        
        
-        #     elif str(e) =="Wrong price format":
-        #         msg_box_price = QMessageBox()
-        #         msg_box_price.setWindowTitle("Error")
-        #         msg_box_price.setText("Nesprávně zadaná celková cena!")
-        #         msg_box_price.exec()
+            elif str(e) =="Wrong price format":
+                msg_box_price = QMessageBox()
+                msg_box_price.setWindowTitle("Error")
+                msg_box_price.setText("Zadejte celkovou cenu!")
+                msg_box_price.exec()
         
+            elif str(e) == "Missing currency":
+                msg_box_price = QMessageBox()
+                msg_box_price.setWindowTitle("Error")
+                msg_box_price.setText("Chybí měna – zadejte částku včetně měny (např. 250 Kč).")
+                msg_box_price.exec()
+                
+                
 
 
-        # else:
-        create_pdf(data["others"]["invoke_num"])
+        else:
+            create_pdf(data["others"]["invoke_num"])
         
         return data
 

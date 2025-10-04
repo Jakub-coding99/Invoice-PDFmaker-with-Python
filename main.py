@@ -26,6 +26,9 @@ def create_pdf(invoke_num):
             invoke_num = formatted_invoke_num
         browser = p.chromium.launch()
         page = browser.new_page()
+
+        faktury_folder = os.path.join(desktop, "faktury")
+        os.makedirs(faktury_folder, exist_ok=True)
         page.goto("file:///C:/Users/PC/Desktop/faktura model/templates/new_model.html")
         page.pdf(path=f"{desktop}/faktury/faktura-{invoke_num}.pdf", format="A4",print_background=True)
         browser.close()
@@ -34,6 +37,7 @@ def create_pdf(invoke_num):
 def create_qr(invoke_num, amount,acc):
     from schwifty import IBAN
     import re
+   
     bank_codes = ["3030", "2230", "2600", "0800", "7960", "0300", "6100", "2210", "2010", "0600", "2100", "3500", "5800", "0100", "4000",
                    "6210", "7990", "8040", "0300", "7950", "5500", "8030", "6800", "8060", "2700", "7980", "7970", "2310"]
 
@@ -63,11 +67,27 @@ def create_qr(invoke_num, amount,acc):
     bban = bank_code + prefix + acc_number
         
     iban = IBAN.from_bban("CZ", bban)
-    if amount:
-        x = float(amount.replace("Kč","").replace(",",".").replace(" ", "").strip())
-        amount_formatted = f"{x:.2f}"
-    else:
+    
+    
+    
+    if  len(amount) == 0:
         raise ValueError("Wrong price format")
+    
+    elif amount.lower() == "kč":
+        raise ValueError("Wrong price format")
+        
+    
+    elif "kč" not in amount.lower():
+        raise ValueError("Missing currency")
+    
+    else:
+       
+        x = float(amount.lower().replace("kč","").replace(",",".").replace(" ", "").strip())
+        amount_formatted = f"{x:.2f}"
+  
+        
+
+
     
     ACC_data = iban
     AM_data = amount_formatted
