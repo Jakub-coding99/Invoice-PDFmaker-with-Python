@@ -4,19 +4,34 @@
     box-sizing: border-box;
 }
 
+
+
+@page {
+
+   
+    margin: 10mm;
+    size: A4;
+
+   
+
+    
+
+}
+
 .a4-container {
     width: 210mm;
     height: 297mm;
-    margin: 0 auto;
-    border: 2px solid black;
-    padding: 10mm;
-    box-sizing: border-box;
+    margin: 5mm auto 5mm auto;
+    padding: 5mm;
+
 }
 
 .content-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin: 0 auto;
+    width: 190mm;
 }
 
 
@@ -152,7 +167,7 @@ table td p {
 
 .totalAmount h3 {
     padding: 2.6mm;
-    margin-top:0;
+    margin-top: 5mm;
     text-align: right;
     margin-right: 8mm;
     border-bottom: 0.5mm solid blue;
@@ -203,14 +218,12 @@ table td p {
 footer{
     
     grid-column: span 2;
-    margin: auto 0 10mm 0;
+    margin: 0 auto;
+    width: 100%;
     
     
 }
 
-/* .toBreak {
-    break-inside: avoid;
-} */
 
 footer .dph {
     display: flex;
@@ -259,3 +272,28 @@ footer .sign-line {
     
 }
 
+@media print {
+    footer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+
+
+
+  }
+
+    .a4-container:before {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border: 1px solid black;
+        z-index: 1;
+
+    }
+
+   
+
+   
+}
