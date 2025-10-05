@@ -4,7 +4,6 @@
 
 ![Image](https://github.com/user-attachments/assets/0f62662d-913a-4210-b1f1-526867c0a06e)
 
-![Image](https://github.com/user-attachments/assets/c35c38e6-e4fc-44be-b962-7903d25b60bd) 
 
 
 Desktopová aplikace pro generování faktur.
@@ -44,12 +43,14 @@ Data se následně vloží do stylované HTML šablony pomocí **Jinja2**, kter�
     playwright install
     ```
 
-4. Pro podpis přidej obrazek podpisu do static/img, ideálně v png formátu.
+4. Pro podpis přidej obrazek podpisu do static/img, ideálně s pruůhledným pozadím.
 
 5. Spusť 
     ```bash
     gui_config.py
     ```
+![Image](https://github.com/user-attachments/assets/c35c38e6-e4fc-44be-b962-7903d25b60bd) 
+
 
 
 ##  📝 Description (English)
@@ -97,7 +98,7 @@ An automatically generated **QR** code is also included for payment.
     playwright install
     ```
    
-4. For sign add image of sign to static/img. PNG format preffered.
+4. For sign add image of sign to static/img. Transparent background preffered.
 
 
 5. Run
