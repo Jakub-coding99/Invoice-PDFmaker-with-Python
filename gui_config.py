@@ -1,11 +1,11 @@
 import sys
-from PyQt6.QtWidgets import QApplication,QMainWindow,QTableWidgetItem,QLineEdit,QTextEdit,QMessageBox, QPushButton
+from PyQt6.QtWidgets import QApplication,QMainWindow,QTableWidgetItem,QLineEdit,QTextEdit,QMessageBox
 from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
 
 from output import Ui_MainWindow
 from main import create_pdf, create_qr, render_data
-import time
+
 #pyside6-designer  
 
 
@@ -181,17 +181,16 @@ class MyApp(Ui_MainWindow,QMainWindow):
             
             if data["material_name"]:
                 data["material_name"] = "<p>" + data["material_name"].replace("\n\n","</p><br><p>").replace("\n", "</p><p>")  + "</p>"
-        # print(all_data)
+
         return all_data
 
     #DEFINE SUPPLIER
-
     def user_config(self):
-        self.supplier_name.setText("Jakub Jurajda")
-        self.supplier_address.setText("Prostřední Bečva 482")
-        self.supplier_town.setText("Prostřední Bečva")
-        self.supplier_PN.setText("756 56")
-        self.supplier_ICO.setText("06929141")
+        self.supplier_name.setText("")
+        self.supplier_address.setText("")
+        self.supplier_town.setText("")
+        self.supplier_PN.setText("")
+        self.supplier_ICO.setText("")
     
     
     def get_data(self):

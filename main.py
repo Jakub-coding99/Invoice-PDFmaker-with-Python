@@ -2,9 +2,8 @@ import qrcode
 from playwright.sync_api import sync_playwright
 import os
 from jinja2 import Environment, FileSystemLoader
-import base64
-# num_kuba = "115-7073590277/0100"
-# num = "213057318/0600"
+
+
 
 def render_data(data):
     env = Environment(loader = FileSystemLoader('templates'))
@@ -29,7 +28,7 @@ def create_pdf(invoke_num):
 
         faktury_folder = os.path.join(desktop, "faktury")
         os.makedirs(faktury_folder, exist_ok=True)
-        page.goto("file:///C:/Users/PC/Desktop/faktura model/templates/new_model.html")
+        page.goto("file:///C:/Users/PC/Desktop/invoice_model/templates/new_model.html")
         page.pdf(path=f"{desktop}/faktury/faktura-{invoke_num}.pdf", format="A4",print_background=True)
         browser.close()
 
