@@ -47,7 +47,7 @@ Data se následně vloží do stylované HTML šablony pomocí **Jinja2**, kter�
 
 5. Spusť 
     ```bash
-    gui_config.py
+    python gui_config.py
     ```
 ![Image](https://github.com/user-attachments/assets/c35c38e6-e4fc-44be-b962-7903d25b60bd) 
 
