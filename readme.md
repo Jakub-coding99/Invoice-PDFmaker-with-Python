@@ -98,6 +98,11 @@ An automatically generated **QR** code is also included for payment.
 5. Run
     ```bash
     python gui_config.py
+
+![Image](https://github.com/user-attachments/assets/c35c38e6-e4fc-44be-b962-7903d25b60bd)
+
+
+![Image](https://github.com/user-attachments/assets/0f62662d-913a-4210-b1f1-526867c0a06e)
     ```
 
 
